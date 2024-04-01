@@ -8,25 +8,9 @@ const options = {
   },
 };
 
-// export const getImages = () => {
-//   return fetch(
-//     `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent('red roses')}`,
-//     options
-//   )
-//     .then(response => {
-//       if (!response.ok) {
-//         throw new Error(response.status);
-//       }
-//       return response.json();
-//     })
-//     .then(post => console.log(post))
-//     .catch(error => console.log(error));
-// };
-
-export const getImages = () => {
+export const getImages = (searchValue = '') => {
   return fetch(
-    `https://pixabay.com/api/?key=43151566-329d1ba35c4912218880d8d24&q=roses`,
-    options
+    `${BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(searchValue)}`
   )
     .then(response => {
       if (!response.ok) {
@@ -34,6 +18,8 @@ export const getImages = () => {
       }
       return response.json();
     })
-    .then(post => console.log(post))
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
 };

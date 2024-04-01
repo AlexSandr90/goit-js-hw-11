@@ -25,6 +25,9 @@
 body {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
 }
 
 .search {
@@ -65,4 +68,71 @@ body {
 
 .submit:hover {
   background-color: #6C8CFF;
+}
+
+section {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.find--images-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  list-style-type: none;
+  justify-content: center;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
+.find--images-item {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  height: 200px;
+  border: 1px solid #808080;
+  cursor: pointer;
+}
+
+.find--images-item img {
+  display: block;
+  width: 360px;
+  height: 152px;
+  object-fit: cover;
+}
+
+.stats-block {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.stats-block li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats-block li span:first-child,
+.stats-block li span:nth-child(2) {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  letter-spacing: 4%;
+}
+
+.stats-block li span:first-child {
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.stats-block li span:nth-child(2) {
+  line-height: 24px;
 }
