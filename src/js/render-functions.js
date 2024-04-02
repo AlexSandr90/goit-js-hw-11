@@ -1,5 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export const renderImages = imagesArr => {
   if (imagesArr.length <= 0) {
@@ -16,9 +18,19 @@ export const renderImages = imagesArr => {
   }
 
   return imagesArr
-    .map(({ tags, likes, views, comments, downloads, webformatURL }) => {
-      return `<li class="find--images-item">
-          <img src="${webformatURL}" alt="${tags}" />
+    .map(
+      ({
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+        webformatURL,
+        largeImageURL,
+      }) => {
+        return `<li class="gallery-item">
+        <a class="gallery-link" href="${largeImageURL}" >
+          <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
           <ul class="stats-block">
             <li>
               <span>Likes</span>
@@ -37,9 +49,11 @@ export const renderImages = imagesArr => {
               <span>${downloads}</span>
             </li>
           </ul>
+          </a>
         </li>
         `;
-    })
+      }
+    )
     .join('');
 };
 
@@ -71,3 +85,10 @@ export const addedImages = (insertImagesArr, outputImagesArr) => {
     outputImagesArr.push(imageObj);
   });
 };
+
+const sliderOptions = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
+
+const slider = new SimpleLightbox('ul.gallery a', sliderOptions);

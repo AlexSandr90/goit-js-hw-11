@@ -79,7 +79,7 @@ section {
   position: relative;
 }
 
-.find--images-block {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   gap: 24px;
@@ -92,7 +92,7 @@ section {
   width: 100%;
 }
 
-.find--images-item {
+.gallery-item {
   display: flex;
   flex-direction: column;
   width: 360px;
@@ -101,11 +101,17 @@ section {
   cursor: pointer;
 }
 
-.find--images-item img {
+.gallery-image {
   display: block;
   width: 360px;
   height: 152px;
   object-fit: cover;
+}
+
+.img-popup {
+  display: block;
+  width: 1112px;
+  height: 640px;
 }
 
 .stats-block {

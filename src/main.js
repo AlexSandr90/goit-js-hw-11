@@ -1,9 +1,12 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
+
 import { getImages } from './js/pixabay-api';
 import { renderImages, addedImages } from './js/render-functions';
 
 const searchInput = document.querySelector('input[class="search-input"]');
 const form = document.querySelector('form[class="search"]');
-const imgBlock = document.querySelector('ul[class="find--images-block"]');
+const imgBlock = document.querySelector('ul[class="gallery"]');
 let images = [];
 
 const handleSubmit = async event => {
