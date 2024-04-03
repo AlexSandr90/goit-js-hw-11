@@ -22,6 +22,13 @@ const handleSubmit = async event => {
       imgBlock.textContent = '';
       addedImages(imagesData.hits, images);
       imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
+
+      const sliderOptions = {
+        captionsData: 'alt',
+        captionDelay: 250,
+      };
+
+      const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
     }
   } catch (error) {
     console.error('Error fetching images:', error);
@@ -31,10 +38,3 @@ const handleSubmit = async event => {
 };
 
 form.addEventListener('submit', handleSubmit);
-
-const sliderOptions = {
-  captionsData: 'alt',
-  captionDelay: 250,
-};
-
-const slider = new SimpleLightbox('ul.gallery a', sliderOptions);

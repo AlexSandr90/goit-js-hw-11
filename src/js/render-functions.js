@@ -1,7 +1,5 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 
 export const renderImages = imagesArr => {
   if (imagesArr.length <= 0) {
@@ -28,27 +26,28 @@ export const renderImages = imagesArr => {
         webformatURL,
         largeImageURL,
       }) => {
-        return `<li class="gallery-item">
-        <a class="gallery-link" href="${largeImageURL}" >
-          <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
-          <ul class="stats-block">
-            <li>
-              <span>Likes</span>
-              <span>${likes}</span>
-            </li>
-            <li>
-              <span>Views</span>
-              <span>${views}</span>
-            </li>
-            <li>
-              <span>Comments</span>
-              <span>${comments}</span>
-            </li>
-            <li>
-              <span>Downloads</span>
-              <span>${downloads}</span>
-            </li>
-          </ul>
+        return `
+        <li class="gallery-item">
+          <a class="gallery-link" href="${largeImageURL}" >
+            <img class="gallery-image" src="${webformatURL}" alt="${tags}" />
+            <ul class="stats-block">
+              <li>
+                <span>Likes</span>
+                <span>${likes}</span>
+              </li>
+              <li>
+                <span>Views</span>
+                <span>${views}</span>
+              </li>
+              <li>
+                <span>Comments</span>
+                <span>${comments}</span>
+              </li>
+              <li>
+                <span>Downloads</span>
+                <span>${downloads}</span>
+              </li>
+            </ul>
           </a>
         </li>
         `;
@@ -72,7 +71,7 @@ export const addedImages = (insertImagesArr, outputImagesArr) => {
       webformatURL,
       largeImageURL,
     } = imageDataItem;
-    console.log({ imageDataItem });
+
     const imageObj = {
       tags,
       likes,
