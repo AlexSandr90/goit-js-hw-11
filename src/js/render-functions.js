@@ -85,10 +85,3 @@ export const addedImages = (insertImagesArr, outputImagesArr) => {
     outputImagesArr.push(imageObj);
   });
 };
-
-const sliderOptions = {
-  captionsData: 'alt',
-  captionDelay: 250,
-};
-
-const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
