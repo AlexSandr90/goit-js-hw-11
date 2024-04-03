@@ -1,5 +1,5 @@
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { getImages } from './js/pixabay-api';
 import { renderImages, addedImages } from './js/render-functions';
@@ -31,3 +31,10 @@ const handleSubmit = async event => {
 };
 
 form.addEventListener('submit', handleSubmit);
+
+const sliderOptions = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
+
+const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
