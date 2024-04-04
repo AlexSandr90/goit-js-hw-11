@@ -20,8 +20,10 @@ const sliderOptions = {
 
 const handleSubmit = async event => {
   event.preventDefault();
+  
   images = [];
   imgBlock.textContent = '';
+
   const form = event.target;
   const input = searchInput.value.trim();
 
@@ -38,7 +40,7 @@ const handleSubmit = async event => {
     if (imagesData !== null) {
       addedImages(imagesData.hits, images);
       imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
-
+      
       const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
     }
   } catch (error) {
