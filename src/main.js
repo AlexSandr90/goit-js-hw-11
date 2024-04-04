@@ -5,6 +5,7 @@ import { getImages } from './js/pixabay-api';
 import { renderImages, addedImages } from './js/render-functions';
 
 const searchInput = document.querySelector('input[class="search-input"]');
+const submitButton = document.querySelector('button[class="submit"]');
 const form = document.querySelector('form[class="search"]');
 const gallerySection = document.querySelector(
   'section[class="gallery-section"]'
@@ -18,9 +19,17 @@ const sliderOptions = {
   captionDelay: 250,
 };
 
+searchInput.addEventListener('input', () => {
+  if (searchInput.value.length > 0) {
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+});
+
 const handleSubmit = async event => {
   event.preventDefault();
-  
+
   images = [];
   imgBlock.textContent = '';
 
@@ -40,7 +49,7 @@ const handleSubmit = async event => {
     if (imagesData !== null) {
       addedImages(imagesData.hits, images);
       imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
-      
+
       const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
     }
   } catch (error) {
@@ -48,6 +57,7 @@ const handleSubmit = async event => {
   }
 
   form.reset();
+  submitButton.disabled = true;
 };
 
 form.addEventListener('submit', handleSubmit);

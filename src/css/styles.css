@@ -70,6 +70,13 @@ body {
   background-color: #6C8CFF;
 }
 
+.submit:disabled {
+  color: #FFFFFF;
+  background-color: #4E75FF;
+  opacity: 0.7;
+  cursor: default;
+}
+
 .gallery-section {
   display: flex;
   width: 100%;
