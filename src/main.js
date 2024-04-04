@@ -6,10 +6,17 @@ import { renderImages, addedImages } from './js/render-functions';
 
 const searchInput = document.querySelector('input[class="search-input"]');
 const form = document.querySelector('form[class="search"]');
-const gallerySection = document.querySelector('section[class="gallery-section"]');
+const gallerySection = document.querySelector(
+  'section[class="gallery-section"]'
+);
 const loaderHtml = '<div id="loader" class="loader"></div>';
 const imgBlock = document.querySelector('ul[class="gallery"]');
 let images = [];
+
+const sliderOptions = {
+  captionsData: 'alt',
+  captionDelay: 250,
+};
 
 const handleSubmit = async event => {
   event.preventDefault();
@@ -28,11 +35,6 @@ const handleSubmit = async event => {
     if (imagesData !== null) {
       addedImages(imagesData.hits, images);
       imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
-
-      const sliderOptions = {
-        captionsData: 'alt',
-        captionDelay: 250,
-      };
 
       const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
     }
