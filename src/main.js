@@ -27,11 +27,14 @@ const handleSubmit = async event => {
 
   try {
     gallerySection.insertAdjacentHTML('beforebegin', loaderHtml);
+
     const imagesData = await getImages(input);
+
     const loader = document.querySelector('#loader');
     if (loader) {
       loader.remove();
     }
+
     if (imagesData !== null) {
       addedImages(imagesData.hits, images);
       imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
