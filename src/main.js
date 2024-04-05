@@ -47,13 +47,11 @@ const handleSubmit = async event => {
       loader.remove();
     }
 
-    console.log({ imagesData: imagesData, input });
-
     if (imagesData !== null && imagesData.hits.length > 0) {
       addedImages(imagesData.hits, images);
-      
+
       renderImages(imgBlock, images);
-      
+
       lightbox.refresh();
     } else {
       iziToast.error({
