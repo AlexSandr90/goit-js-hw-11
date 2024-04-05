@@ -1,5 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImages } from './js/pixabay-api';
 import { renderImages, addedImages } from './js/render-functions';
@@ -14,17 +16,17 @@ const loaderHtml = '<div id="loader" class="loader"></div>';
 const imgBlock = document.querySelector('ul[class="gallery"]');
 let images = [];
 
-const sliderOptions = {
+const lightboxOptions = {
   captionsData: 'alt',
   captionDelay: 250,
 };
 
+const lightbox = new SimpleLightbox('ul.gallery a', lightboxOptions);
+
 searchInput.addEventListener('input', () => {
-  if (searchInput.value.length > 0) {
-    submitButton.disabled = false;
-  } else {
-    submitButton.disabled = true;
-  }
+  searchInput.value.length > 0
+    ? (submitButton.disabled = false)
+    : (submitButton.disabled = true);
 });
 
 const handleSubmit = async event => {
@@ -38,7 +40,6 @@ const handleSubmit = async event => {
 
   try {
     gallerySection.insertAdjacentHTML('beforebegin', loaderHtml);
-
     const imagesData = await getImages(input);
 
     const loader = document.querySelector('#loader');
@@ -46,11 +47,24 @@ const handleSubmit = async event => {
       loader.remove();
     }
 
-    if (imagesData !== null) {
-      addedImages(imagesData.hits, images);
-      imgBlock.insertAdjacentHTML('beforeend', renderImages(images));
+    console.log({ imagesData: imagesData, input });
 
-      const slider = new SimpleLightbox('ul.gallery a', sliderOptions);
+    if (imagesData !== null && imagesData.hits.length > 0) {
+      addedImages(imagesData.hits, images);
+      
+      renderImages(imgBlock, images);
+      
+      lightbox.refresh();
+    } else {
+      iziToast.error({
+        position: 'topRight',
+        messageColor: '#ffffff',
+        timeout: 5000,
+        radius: 15,
+        backgroundColor: '#FF2E2E',
+        message:
+          'Sorry, there are no images matching your search query. Please, try again again!',
+      });
     }
   } catch (error) {
     console.error('Error fetching images:', error);

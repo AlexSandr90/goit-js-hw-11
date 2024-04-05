@@ -1,21 +1,5 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-
-export const renderImages = imagesArr => {
-  if (imagesArr.length <= 0) {
-    iziToast.error({
-      position: 'topRight',
-      messageColor: '#ffffff',
-      timeout: 5000,
-      radius: 15,
-      backgroundColor: '#FF2E2E',
-      message:
-        'Sorry, there are no images matching your search query. Please, try again again!',
-    });
-    return '';
-  }
-
-  return imagesArr
+export const renderImages = (blockToinsertedHtml, imagesArr) => {
+  const markup = imagesArr
     .map(
       ({
         tags,
@@ -54,6 +38,8 @@ export const renderImages = imagesArr => {
       }
     )
     .join('');
+
+  blockToinsertedHtml.insertAdjacentHTML('beforeend', markup);
 };
 
 export const addedImages = (insertImagesArr, outputImagesArr) => {
