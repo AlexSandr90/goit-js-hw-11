@@ -41,32 +41,3 @@ export const renderImages = (blockToinsertedHtml, imagesArr) => {
 
   blockToinsertedHtml.insertAdjacentHTML('beforeend', markup);
 };
-
-export const addedImages = (insertImagesArr, outputImagesArr) => {
-  if (insertImagesArr.length === 0) {
-    return;
-  }
-
-  insertImagesArr.forEach(imageDataItem => {
-    const {
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-      webformatURL,
-      largeImageURL,
-    } = imageDataItem;
-
-    const imageObj = {
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-      webformatURL,
-      largeImageURL,
-    };
-    outputImagesArr.push(imageObj);
-  });
-};

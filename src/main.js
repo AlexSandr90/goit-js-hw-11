@@ -4,7 +4,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { getImages } from './js/pixabay-api';
-import { renderImages, addedImages } from './js/render-functions';
+import { renderImages } from './js/render-functions';
 
 const searchInput = document.querySelector('input[class="search-input"]');
 const submitButton = document.querySelector('button[class="submit"]');
@@ -51,7 +51,7 @@ const handleSubmit = async event => {
     }
 
     if (imagesData !== null && imagesData.hits.length > 0) {
-      addedImages(imagesData.hits, images);
+      images = [...imagesData.hits];
 
       renderImages(imgBlock, images);
 
