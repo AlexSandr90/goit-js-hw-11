@@ -40,7 +40,10 @@ const handleSubmit = async event => {
 
   try {
     gallerySection.insertAdjacentHTML('beforebegin', loaderHtml);
-    const imagesData = await getImages(input);
+    let imagesData;
+    if (input.length > 0) {
+      imagesData = await getImages(input);
+    }
 
     const loader = document.querySelector('#loader');
     if (loader) {
